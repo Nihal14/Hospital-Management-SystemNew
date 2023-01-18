@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/header.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="about-section">
+  <h1>About Us </h1>
+  <p>Sanjeevani Group ventured into healthcare services under the capable leadership of Dr. Ram Sagar in the 80s .  We set on the path of providing affordable yet world-class healthcare to their immediate community by founding one of the first corporate, 250 bedded, multi-speciality tertiary care hospital in the city of Mangaluru in the year 2012. This was followed by an ambitious 415 bedded, multi-speciality tertiary care hospital in the year 2023. Sanjeevani Hospitals is synonymous with quality healthcare, efficiency, reliability and has set very high standards in the healthcare sector in the State.
+
+  </p>
+</div>
+
+<h2 style="text-align:center">Our Backbone</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+      <div class="container">
+        <h2>Dr. Ram Sagar</h2>
+        <p class="title">Founder</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>founder@sanjeevani.com</p>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+        <h2>Dr. Seetha</h2>
+        <p class="title">Director</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>seetha@sanjeevani.com</p>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="/w3images/team3.jpg" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Dr Hariprasad</h2>
+        <p class="title">Cardiologist</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>drhp@sanjeevani.com</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
