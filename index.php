@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Sanjeevani</title>
+	<title>Sanjeevani ,Mangaluru</title>
 	<link rel="shortcut icon" type="image/x-icon" href="images/header.png">
     <link rel="stylesheet" type="text/css" href="style1.css">
 <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
@@ -52,14 +52,14 @@ function checklen()
 
 </head>
 
-<!------ Include the above in your HEAD tag ---------->
+
 <body>
 
     
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
     <div class="container">
 
-      <a class="navbar-brand js-scroll-trigger" href="#" style="margin-top: 5px;margin-left:-60px;font-family: 'IBM Plex Sans', sans-serif;"><h4><i class="fa fa-hospital-o" aria-hidden="true" ></i>&nbsp SANJEEVANI HOSPITAL</h4></a>
+      <a class="navbar-brand js-scroll-trigger" href="#" style="margin-top: 5px;margin-left:-60px;font-family: 'IBM Plex Sans', sans-serif;"><h4><i class="fa fa-hospital-o" aria-hidden="true" ></i>&nbsp SANJEEVANI HOSPITAL ,ADYAR</h4></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,6 +72,9 @@ function checklen()
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="contact.html" style="color: white;font-family: 'IBM Plex Sans', sans-serif;"><h6>CONTACT</h6></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="aboutus.html" style="color: white;font-family: 'IBM Plex Sans', sans-serif;"><h6>ABOUT US</h6></a>
           </li>
         </ul>
       </div>
@@ -203,7 +206,7 @@ function checklen()
 
             </div>
            <footer>
-           <a href="aboutus.html">About Us</a>
+           
             
             
            <a href="#" class="fa fa-facebook"></a>
