@@ -31,7 +31,7 @@ if(isset($_POST['patsub1'])){
   }
   else{
     header("Location:error1.php");
-  }
+  } 
 }
 
 

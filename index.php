@@ -203,8 +203,8 @@ function checklen()
 
             </div>
            <footer>
-           <a href="aboutus.html">About</a>
-            <a href="contact.html">Contact</a>
+           <a href="aboutus.html">About Us</a>
+            
             
            <a href="#" class="fa fa-facebook"></a>
            <a href="#" class="fa fa-twitter"></a>
