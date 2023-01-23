@@ -16,7 +16,8 @@ if(isset($_GET['cancel']))
 ?>
 <html lang="en">
   <head>
-
+  <title>Doctors Portal</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/header.png">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">

@@ -40,7 +40,7 @@ if(isset($_POST['docsub1']))
 <html lang="en">
   <head>
 
-
+  <title>Sanjeevani ,Mangaluru</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="images/header.png" />
