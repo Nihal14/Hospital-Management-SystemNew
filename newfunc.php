@@ -15,15 +15,7 @@ $con=mysqli_connect("localhost","root","","hospitalms");
 //  else
 //   header("Location:error.php");
 // }
-if(isset($_POST['update_data']))
-{
- $contact=$_POST['contact'];
- $status=$_POST['status'];
- $query="update appointmenttb set payment='$status' where contact='$contact';";
- $result=mysqli_query($con,$query);
- if($result)
-  header("Location:updated.php");
-}
+
 
 // function display_docs()
 // {

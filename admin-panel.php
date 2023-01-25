@@ -243,7 +243,7 @@ function get_specs(){
                   <!-- <?php
 
                         $con=mysqli_connect("localhost","root","","hospitalms");
-                        $query=mysqli_query($con,"select username,spec from doctb");
+                        $query=mysqli_query($con,"select doctorname,username,spec from doctb");
                         $docarray = array();
                           while($row =mysqli_fetch_assoc($query))
                           {
@@ -315,10 +315,10 @@ function get_specs(){
 
                   <div class="col-md-4"><label>Appointment Time</label></div>
                   <div class="col-md-8">
-                    <
+                    
                     <select name="apptime" class="form-control" id="apptime" required="required">
                       <option value="" disabled selected>Select Time</option>
-                      <option value="08:00:00">8:00 AM</option>
+                      <option value="08:00:00">9:00 AM</option>
                       <option value="10:00:00">10:00 AM</option>
                       <option value="12:00:00">12:00 PM</option>
                       <option value="14:00:00">2:00 PM</option>

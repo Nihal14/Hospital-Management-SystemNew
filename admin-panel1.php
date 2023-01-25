@@ -570,10 +570,7 @@ if(isset($_POST['docsub1']))
                     $cnt=1;
                     while ($row = mysqli_fetch_array($result)){
               
-                      #$fname = $row['fname'];
-                      #$lname = $row['lname'];
-                      #$email = $row['email'];
-                      #$contact = $row['contact'];
+                     
                   ?>
                       <tr>
                         <td><?php echo $cnt;?></td>

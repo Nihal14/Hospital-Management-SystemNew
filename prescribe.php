@@ -46,7 +46,8 @@ if(isset($_POST['prescribe']) && isset($_POST['pid']) && isset($_POST['ID']) && 
 <html lang="en">
   <head>
 
-
+  <title>Sanjeevani ,Mangaluru</title>
+   
    
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="images/header.png" />
@@ -111,7 +112,7 @@ if(isset($_POST['prescribe']) && isset($_POST['pid']) && isset($_POST['ID']) && 
 
 <body style="padding-top:50px;">
    <div class="container-fluid" style="margin-top:50px;">
-    <h3 style = "padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif; text-align:center ">Dr.  &nbsp<?php echo $doctor ?> , Please Enter the Prescription
+   <marquee behavior="scroll" direction="right" scrollamount="12"><h3 style = "align=justify;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Please prescribe the patient Dr &nbsp<?php echo strtoupper($doctor) ?></marquee>
    </h3>
 
    <div class="tab-pane" id="list-pres" role="tabpanel" aria-labelledby="list-pres-list">
