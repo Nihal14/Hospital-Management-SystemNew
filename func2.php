@@ -37,18 +37,19 @@ if(isset($_POST['patsub1'])){
 
 
 
-// function display_docs()
-// {
-// 	global $con;
-// 	$query="select * from doctb";
-// 	$result=mysqli_query($con,$query);
-// 	while($row=mysqli_fetch_array($result))
-// 	{
-// 		$name=$row['name'];
-// 		# echo'<option value="" disabled selected>Select Doctor</option>';
-// 		echo '<option value="'.$name.'">'.$name.'</option>';
-// 	}
-// }
+
+function display_docs()
+ {
+	global $con;
+ 	$query="select * from doctb";
+	$result=mysqli_query($con,$query);
+ 	while($row=mysqli_fetch_array($result))
+ 	{ 	
+    	$name=$row['doctorname'];
+		 echo'<option value="" disabled selected>Select Doctor</option>';
+	   echo '<option value="'.$name.'">'.$name.'</option>';
+   	}
+ }
 
 if(isset($_POST['doc_sub']))
 {
