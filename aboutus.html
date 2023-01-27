@@ -3,13 +3,29 @@
 <head>
     <title>About Us</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/header.png">
+    
+    <link rel="stylesheet" type="text/css" href="style1.css">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   background-color:gainsboro;
+  background-image:url
 }
+
+#mainNav {
+    background: -webkit-linear-gradient(to right, #210084, #e0cdff);
+  background: linear-gradient(to right, #210084, #e0cdff); 
+  }
 
 html {
   box-sizing: border-box;
@@ -33,6 +49,7 @@ html {
 
 .about-section {
   padding: 50px;
+  margin-top: 60px;
   text-align: center;
   background-color: #7d8cac;
   color: white;
@@ -68,6 +85,52 @@ html {
   background-color: #555;
 }
 
+footer{
+  text-align: right;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  
+  color: white;
+}
+
+.fa-twitter {
+  
+  color: white;
+}
+
+.fa-google {
+  
+  color: white;
+}
+.fa-linkedin {
+  
+  color: white;
+}
+.fa-youtube {
+  
+  color: white;
+}
+
+.fa-instagram {
+  
+  color: white;
+}
+
 @media screen and (max-width: 650px) {
   .column {
     width: 100%;
@@ -77,15 +140,38 @@ html {
 </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
+    <div class="container">
 
+      <a class="navbar-brand js-scroll-trigger" href="#" style="margin-top: 5px;margin-left:-60px;font-family: 'IBM Plex Sans', sans-serif;"><h4><i class="fa fa-hospital-o" aria-hidden="true" ></i>&nbsp SANJEEVANI HOSPITAL ,ADYAR</h4></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" style="margin-right: 40px;">
+            <a class="nav-link js-scroll-trigger" href="index.php" style="color: white;font-family: 'IBM Plex Sans', sans-serif;" ><h6>HOME</h6></a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="contact.html" style="color: white;font-family: 'IBM Plex Sans', sans-serif;"><h6>CONTACT</h6></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="aboutus.html" style="color: white;font-family: 'IBM Plex Sans', sans-serif;"><h6>ABOUT US</h6></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <div class="about-section">
   <h1>About Us </h1>
-  <p>Sanjeevani Group ventured into healthcare services under the capable leadership of Dr. Ram Sagar in the 80s .  We set on the path of providing affordable yet world-class healthcare to their immediate community by founding one of the first corporate, 250 bedded, multi-speciality tertiary care hospital in the city of Mangaluru in the year 2012. This was followed by an ambitious 415 bedded, multi-speciality tertiary care hospital in the year 2023. Sanjeevani Hospitals is synonymous with quality healthcare, efficiency, reliability and has set very high standards in the healthcare sector in the State.
+  <p>Sanjeevani Group ventured into healthcare services under the capable leadership of Dr. Ram Sagar in the 90s .  We set on the path of providing affordable yet world-class healthcare to their immediate community by founding one of the first corporate, 250 bedded, multi-speciality tertiary care hospital in the city of Mangaluru in the year 2012. This was followed by an ambitious 415 bedded, multi-speciality tertiary care hospital in the year 2023. Sanjeevani Hospitals is synonymous with quality healthcare, efficiency, reliability and has set very high standards in the healthcare sector in the State.
 
   </p>
 </div>
 
-<h2 style="text-align:center">Our Backbone</h2>
+<h2 style="text-align:center;color: bisque;">Our Backbone</h2>
 <div class="row">
   <div class="column">
     <div class="card">
@@ -139,6 +225,16 @@ I appreciate the support and resources that this hospital provides, which enable
     </div>
   </div>
 </div>
-
+<footer>
+           
+            
+            
+  <a href="#" class="fa fa-facebook"></a>
+  <a href="#" class="fa fa-twitter"></a>
+  <a href="#" class="fa fa-google"></a>
+  <a href="#" class="fa fa-linkedin"></a>
+  <a href="#" class="fa fa-youtube"></a>
+ <a href="#" class="fa fa-instagram"></a>
+  </footer>
 </body>
 </html>
