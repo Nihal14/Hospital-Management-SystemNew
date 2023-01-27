@@ -24,15 +24,48 @@ if(isset($_POST['patsub1'])){
 
     $query1 = "select * from patreg;";
     $result1 = mysqli_query($con,$query1);
-    if($result1){
-      $_SESSION['pid'] = $row['pid'];
+
+ /*   if($result1){
+      try{
+      while ($row = mysqli_fetch_assoc($result1)) {
+        $_SESSION['pid'] = $row['pid'];
+        echo "<script>alert('Email already Registered'); </script>";
+
+      }
+      }catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            echo "Error: Duplicate entry detected.";
+        } else {
+            echo "Error: ". $e->getMessage();
+        }
+      }
+      
     }
 
   }
   else{
     header("Location:error1.php");
   } 
+
+*/
+if(mysqli_num_rows($result1)==1)
+{
+  while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)){
+  
+        $_SESSION['pid']=$row['pid'];
+    
+  }
+  header("Location:admin-panel.php");
 }
+else{
+  // header("Location:error2.php");
+  echo("<script>alert('Email already registered. Log in!');
+        window.location.href = 'index.php';</script>");
+}
+}
+
+
+  }
 
 
 
@@ -75,7 +108,6 @@ function display_admin_panel(){
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
      <ul class="navbar-nav mr-auto">
        <li class="nav-item">
@@ -110,13 +142,7 @@ function display_admin_panel(){
        <a class="list-group-item list-group-item-action" id="list-attend-list" data-toggle="list" href="#list-attend" role="tab" aria-controls="settings">Attendance</a>
     </div><br>
   </div>
-
   
-
-
-
-
-
   <div class="col-md-8">
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
@@ -137,15 +163,10 @@ function display_admin_panel(){
                   <div class="col-md-4"><label>Doctor:</label></div>
                   <div class="col-md-8">
                    <select name="doctor" class="form-control" >
-
                      <!-- <option value="" disabled selected>Select Doctor</option>
                      <option value="Dr. Punam Shaw">Dr. Punam Shaw</option>
                       <option value="Dr. Ashok Goyal">Dr. Ashok Goyal</option> -->
                       <?php display_docs();?>
-
-
-
-
                     </select>
                   </div><br><br>
                   <div class="col-md-4"><label>Payment:</label></div>

@@ -2,7 +2,7 @@
 <?php 
 $con=mysqli_connect("localhost","root","","hospitalms");
 
-include('newfunc.php');
+
 
 if(isset($_POST['docsub']))
 {
@@ -75,6 +75,15 @@ if(isset($_POST['docsub1']))
   var key = event.keyCode;
   return ((key >= 65 && key <= 90) || key == 8 || key == 32);
 };
+
+function checklen()
+{
+    var pass1 = document.getElementById("password");  
+    if(pass1.value.length<6){  
+        alert("Password must be at least 6 characters long. Try again!");  
+        return false;  
+  }  
+}
   </script>
 
   <style >
@@ -114,6 +123,35 @@ if(isset($_POST['docsub1']))
   border-color: #3c50c1;
   
 }
+
+.my-button {
+  background-color: #4CAF50; 
+  background: linear-gradient(to bottom, #210084, #e0cdff);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  
+}
+
+.my-button {
+  transform: translateX(-10%);
+  transition: transform 0.3s ease;
+}
+.my-button:hover {
+  transform: translateX(0);
+}
+.my-button:hover {
+  background: linear-gradient(to bottom, #e0cdff, #210084);
+}
   </style>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -147,6 +185,7 @@ if(isset($_POST['docsub1']))
       <a class="list-group-item list-group-item-action" href="#list-settings" id="list-adoc-list"  role="tab" data-toggle="list" aria-controls="home">Add Doctor</a>
       <a class="list-group-item list-group-item-action" href="#list-settings1" id="list-ddoc-list"  role="tab" data-toggle="list" aria-controls="home">Delete Doctor</a>
       <a class="list-group-item list-group-item-action" href="#list-mes" id="list-mes-list"  role="tab" data-toggle="list" aria-controls="home">Queries</a>
+      <a class="list-group-item list-group-item-action" href="#list-upd" id="list-update-list"  role="tab" data-toggle="list" aria-controls="home">Update Patient</a>
       
     </div><br>
   </div>
@@ -160,7 +199,7 @@ if(isset($_POST['docsub1']))
               <div class="row">
                <div class="col-sm-4">
                   <div class="panel panel-white no-radius text-center">
-                    <!--<div class="panel-body">
+                    <div class="panel-body">
                       <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-user-md fa-stack-1x fa-inverse"></i> </span>
                       <h4 class="StepTitle" style="margin-top: 5%;">Doctor List</h4>
                       <script>
@@ -173,13 +212,13 @@ if(isset($_POST['docsub1']))
                           View Doctors
                         </a>
                       </p>
-                    </div> -->
+                    </div> 
                   </div>
                 </div>
 
                 <div class="col-sm-4" style="left: -3%">
                   <div class="panel panel-white no-radius text-center">
-                    <!-- <div class="panel-body" >
+                     <div class="panel-body" >
                       <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
                       <h4 class="StepTitle" style="margin-top: 5%;">Patient List</h4>
                       
@@ -188,14 +227,14 @@ if(isset($_POST['docsub1']))
                           View Patients
                         </a>
                       </p>
-                    </div> -->
+                    </div> 
                   </div>
                 </div>
               
 
                 <div class="col-sm-4">
                   <div class="panel panel-white no-radius text-center">
-                   <!--  <div class="panel-body" >
+                    <div class="panel-body" >
                       <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
                       <h4 class="StepTitle" style="margin-top: 5%;">Appointment Details</h4>
                     
@@ -204,7 +243,7 @@ if(isset($_POST['docsub1']))
                           View Appointments
                         </a>
                       </p>
-                    </div> -->
+                    </div> 
                   </div>
                 </div>
                 </div>
@@ -212,7 +251,7 @@ if(isset($_POST['docsub1']))
                 <div class="row">
                 <div class="col-sm-4" style="left: 13%;margin-top: 5%;">
                   <div class="panel panel-white no-radius text-center">
-                   <!--  <div class="panel-body" >
+                     <div class="panel-body" >
                       <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-file-powerpoint-o fa-stack-1x fa-inverse"></i> </span>
                       <h4 class="StepTitle" style="margin-top: 5%;">Prescription List</h4>
                     
@@ -221,14 +260,14 @@ if(isset($_POST['docsub1']))
                           View Prescriptions
                         </a>
                       </p>
-                    </div> -->
+                    </div> 
                   </div>
                 </div>
 
 
                 <div class="col-sm-4" style="left: 18%;margin-top: 5%">
                   <div class="panel panel-white no-radius text-center">
-                   <!--  <div class="panel-body" >
+                    <div class="panel-body" >
                       <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-plus-circle fa-stack-1x fa-inverse"></i> </span>
                       <h4 class="StepTitle" style="margin-top: 5%;">Manage Doctors</h4>
                     
@@ -239,7 +278,7 @@ if(isset($_POST['docsub1']))
                           Delete Doctors
                         </a>
                       </p>
-                    </div> -->
+                    </div> 
                   </div>
                 </div>
                 </div>
@@ -360,6 +399,96 @@ if(isset($_POST['docsub1']))
               </table>
         <br>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="tab-pane fade" id="list-upd" role="tabpanel" aria-labelledby="list-update-list">
+
+        <div class="updatePatient">
+        <form action="update.php" method="post" id="updateForm">
+          <div class="form-group">
+            <input type="text" class="form-control"  placeholder="First Name *" name="fname"  onkeydown="return alphaOnly(event);" required/>
+          </div>
+         
+          <div class="form-group">
+            <input type="text" class="form-control"  placeholder="Last Name *" name="lname"  onkeydown="return alphaOnly(event);" required/>
+          </div>
+          
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email *" name="email"  required/>
+          </div>
+          
+          <div class="form-group">
+            <input type="number" class="form-control"  placeholder="ID *" name="ID" required/>
+          </div>
+          
+        <input type="submit" name="update" value="Update"  class="my-button">
+      
+         </form>
+      
+        </div>
+ 
+       <table class="table table-hover">
+         <thead>
+           <tr>
+           <th scope="col">#ID</th>
+             <th scope="col">Fullname</th>
+             <th scope="col">Gender</th>
+             <th scope="col">Email</th>
+             <th scope="col">Contact</th>
+           </tr>
+         </thead>
+         <tbody>
+           <?php 
+             $con=mysqli_connect("localhost","root","","hospitalms");
+             global $con;
+             $query = "select * from patreg";
+             $result = mysqli_query($con,$query);
+             
+             while ($row = mysqli_fetch_array($result)){
+               $pid = $row['pid'];
+               $fname = $row['fname'];
+               $lname = $row['lname'];
+               $gender = $row['gender'];
+               $email = $row['email'];
+               $contact = $row['contact'];
+               
+               echo "<tr>
+                 <td>$pid</td>
+                 <td>$fname $lname</td>
+                 <td>$gender</td>
+                 <td>$email</td>
+                 <td>$contact</td>
+               </tr>";
+             }
+
+           ?>
+         </tbody>
+       </table>
+ <br>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       <div class="tab-pane fade" id="list-pres" role="tabpanel" aria-labelledby="list-pres-list">

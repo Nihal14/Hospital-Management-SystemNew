@@ -1,7 +1,51 @@
 body{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
-
+footer{
+    text-align: right;
+  }
+  
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    
+    color: white;
+  }
+  
+  .fa-twitter {
+    
+    color: white;
+  }
+  
+  .fa-google {
+    
+    color: white;
+  }
+  .fa-linkedin {
+    
+    color: white;
+  }
+  .fa-youtube {
+    
+    color: white;
+  }
+  
+  .fa-instagram {
+    
+    color: white;
+  }
 html {
   overflow-y: scroll; 
 }
