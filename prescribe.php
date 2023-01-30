@@ -29,8 +29,14 @@ if(isset($_POST['prescribe']) && isset($_POST['pid']) && isset($_POST['ID']) && 
   $pid = $_POST['pid'];
   $ID = $_POST['ID'];
   $prescription = $_POST['prescription'];
+
+  $query = "SELECT doctor_id FROM doctb WHERE username ='$doctor';";
+  $result = mysqli_query($con,$query);
+  $row = mysqli_fetch_assoc($result);
+  $docid = $row['doctor_id'];
   
   $query=mysqli_query($con,"insert into prestb(doctor,pid,ID,fname,lname,appdate,apptime,disease,allergy,prescription) values ('$doctor','$pid','$ID','$fname','$lname','$appdate','$apptime','$disease','$allergy','$prescription')");
+  $update_query = mysqli_query($con,"UPDATE prestb SET did='$docid' WHERE pid='$pid' AND ID='$ID' ");
     if($query)
     {
       echo "<script>alert('Prescribed successfully!');</script>";
@@ -112,7 +118,7 @@ if(isset($_POST['prescribe']) && isset($_POST['pid']) && isset($_POST['ID']) && 
 
 <body style="padding-top:50px;">
    <div class="container-fluid" style="margin-top:50px;">
-   <marquee behavior="scroll" direction="right" scrollamount="12"><h3 style = "align=justify;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Please prescribe the patient Dr &nbsp<?php echo strtoupper($doctor) ?></marquee>
+   <marquee behavior="scroll" direction="left" scrollamount="10"><h3 style = "align=justify;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Please prescribe the patient Dr &nbsp<?php echo strtoupper($doctor) ?></marquee>
    </h3>
 
    <div class="tab-pane" id="list-pres" role="tabpanel" aria-labelledby="list-pres-list">

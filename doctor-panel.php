@@ -3,6 +3,7 @@
 include('func1.php');
 $con=mysqli_connect("localhost","root","","hospitalms");
 $doctor = $_SESSION['dname'];
+
 if(isset($_GET['cancel']))
   {
     $query=mysqli_query($con,"update appointmenttb set doctorStatus='0' where ID = '".$_GET['ID']."'");
@@ -11,6 +12,12 @@ if(isset($_GET['cancel']))
       echo "<script>alert('Your appointment successfully cancelled');</script>";
     }
   }
+
+  $query = "select doctor_id from doctb where username ='$doctor';";
+  $result = mysqli_query($con,$query);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $docid = $row['doctor_id'];
+}
 
 
 ?>
@@ -88,6 +95,8 @@ if(isset($_GET['cancel']))
   <body style="padding-top:50px;">
    <div class="container-fluid" style="margin-top:50px;">
     <h3 style = "margin-left: 40%; padding-bottom: 20px;font-family:'IBM Plex Sans', sans-serif;"> Welcome Dr. &nbsp<?php echo strtoupper($_SESSION['dname'])?>  </h3>
+    <p style = "text-align:justify;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> DoctorID: &nbsp<?php echo $docid ?> 
+    </p>
     <div class="row">
   <div class="col-md-4" style="max-width:18%;margin-top: 3%;">
     <div class="list-group" id="list-tab" role="tablist">
@@ -148,7 +157,7 @@ if(isset($_GET['cancel']))
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">PID</th>
                     <th scope="col">Patient</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Email</th>
@@ -172,7 +181,7 @@ if(isset($_GET['cancel']))
                     while ($row = mysqli_fetch_array($result)){
                       ?>
                       <tr>
-                      <td><?php echo $cnt;?></td>
+                      <td><?php echo $row['pid'];?></td>
                         <td><?php echo $row['fname'];?> <?php echo $row['lname'];?></td>
                         <td><?php echo $row['gender'];?></td>
                         <td><?php echo $row['email'];?></td>
@@ -227,7 +236,7 @@ if(isset($_GET['cancel']))
 
 
                       </tr></a>
-                    <?php $cnt++; } ?>
+                    <?php  } ?>
                 </tbody>
               </table>
         <br>
@@ -239,14 +248,14 @@ if(isset($_GET['cancel']))
         <table class="table table-hover">
                 <thead>
                   <tr>
-                    
-                    <th scope="col">#</th>
+                    <th scope="col">AID</th>
+                    <th scope="col">PID</th>
                     <th scope="col">Patient</th>
                     <th scope="col">Appointment Date</th>
                     <th scope="col">Appointment Time</th>
                     <th scope="col">Disease</th>
                     <th scope="col">Allergy</th>
-                    <th scope="col">Prescribe</th>
+                    <th scope="col">Prescription</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -266,16 +275,25 @@ if(isset($_GET['cancel']))
                     while ($row = mysqli_fetch_array($result)){
                   ?>
                       <tr>
-                        <td><?php echo $cnt;?></td>
+                        <td><?php echo $row['ID'];?></td>
+                        <td><?php echo $row['pid'];?></td>
                         <td><?php echo $row['fname'];?> <?php echo $row['lname'];?></td>                        
                         <td><?php echo $row['appdate'];?></td>
                         <td><?php echo $row['apptime'];?></td>
                         <td><?php echo $row['disease'];?></td>
                         <td><?php echo $row['allergy'];?></td>
                         <td><?php echo $row['prescription'];?></td>
+                        <td>
+                        
+
+                        <a href="updateprescription.php?pid=<?php echo $row['pid']?>&ID=<?php echo $row['ID']?>&fname=<?php echo $row['fname']?>&lname=<?php echo $row['lname']?>&appdate=<?php echo $row['appdate']?>&apptime=<?php echo $row['apptime']?>"
+                        tooltip-placement="top" tooltip="Remove" title="Update">
+                        <button class="btn btn-success">Update</button></a>
+                        </td>
+                        
                     
                       </tr>
-                    <?php $cnt++; }
+                    <?php  }
                     ?>
                 </tbody>
               </table>
@@ -352,8 +370,7 @@ if(isset($_GET['cancel']))
   </div>
 </div>
    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

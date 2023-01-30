@@ -21,6 +21,21 @@ a:hover{
     color:white;
 }
 
+#welcome-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+#welcome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 </style>
 
 <script>
@@ -49,12 +64,13 @@ function checklen()
   }  
 }
 
+
+
 </script>
 
 </head>
 
 
-<body>
 
     
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >

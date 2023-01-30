@@ -36,6 +36,11 @@ if(isset($_POST['app-submit']))
   $cur_time = date("H:i:s");
   $apptime1 = strtotime($apptime);
   $appdate1 = strtotime($appdate);
+
+  $query = "SELECT doctor_id FROM doctb WHERE username ='$doctor';";
+  $result = mysqli_query($con,$query);
+  $row = mysqli_fetch_assoc($result);
+  $docid = $row['doctor_id'];
 	
   if(date("Y-m-d",$appdate1)>=$cur_date){
     if((date("Y-m-d",$appdate1)==$cur_date and date("H:i:s",$apptime1)>$cur_time) or date("Y-m-d",$appdate1)>$cur_date) {
@@ -43,7 +48,7 @@ if(isset($_POST['app-submit']))
 
         if(mysqli_num_rows($check_query)==0){
           $query=mysqli_query($con,"insert into appointmenttb(pid,fname,lname,gender,email,contact,doctor,docFees,appdate,apptime,userStatus,doctorStatus) values($pid,'$fname','$lname','$gender','$email','$contact','$doctor','$docFees','$appdate','$apptime','1','1')");
-
+          $update_query = mysqli_query($con,"UPDATE appointmenttb SET doc_id='$docid' WHERE doctor='$doctor' AND appdate='$appdate' AND apptime='$apptime'");
           if($query)
           {
             echo "<script>alert('Your appointment successfully booked');</script>";
@@ -85,6 +90,102 @@ function get_specs(){
         $docarray[] = $row;
     }
     return json_encode($docarray);
+}
+
+function generate_bill(){
+  $con=mysqli_connect("localhost","root","","hospitalms");
+  $pid = $_SESSION['pid'];
+  $output='';
+  $query=mysqli_query($con,"select p.pid,p.ID,p.fname,p.lname,p.doctor,p.appdate,p.apptime,p.disease,p.allergy,p.prescription,a.docFees from prestb p inner join appointmenttb a on p.ID=a.ID and p.pid = '$pid' and p.ID = '".$_GET['ID']."'");
+  while($row = mysqli_fetch_array($query)){
+    $output .= '
+    <label> Bill No : </label>SNJADR_'.$row["pid"].$row["ID"].'<br/><br/>
+    <label> Patient : </label>'.$row["fname"].' '.$row["lname"].'<br/><br/>
+    <label> Doctor : </label>'.$row["doctor"].'<br/><br/>
+    <label> Appointment Date : </label>'.$row["appdate"].'<br/><br/>
+    <label> Appointment Time : </label>'.$row["apptime"].'<br/><br/>
+    <label> Disease : </label>'.$row["disease"].'<br/><br/>
+    <label> Allergies : </label>'.$row["allergy"].'<br/><br/>
+    <label> Prescription : </label>'.$row["prescription"].'<br/><br/>
+    <label> Bill Amount : </label>Rs '.$row["docFees"].'<br/>
+    
+    ';
+
+  }
+  
+  return $output;
+}
+
+
+if(isset($_GET["generate_bill"])){
+  require_once("TCPDF/tcpdf.php");
+  $obj_pdf = new TCPDF('P',PDF_UNIT,PDF_PAGE_FORMAT,true,'UTF-8',false);
+  $obj_pdf -> SetCreator(PDF_CREATOR);
+  $obj_pdf -> SetTitle("Sanjeevani Bill");
+  $obj_pdf -> SetHeaderData('','',PDF_HEADER_TITLE,PDF_HEADER_STRING);
+  $obj_pdf -> SetHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+  $obj_pdf -> SetFooterFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
+  $obj_pdf -> SetDefaultMonospacedFont('helvetica');
+  $obj_pdf -> SetFooterMargin(PDF_MARGIN_FOOTER);
+  $obj_pdf -> SetMargins(PDF_MARGIN_LEFT,'5',PDF_MARGIN_RIGHT);
+  $obj_pdf -> SetPrintHeader(false);
+  $obj_pdf -> SetPrintFooter(false);
+  $obj_pdf -> SetAutoPageBreak(TRUE, 10);
+  $obj_pdf -> SetFont('helvetica','',12);
+  $obj_pdf -> AddPage();
+
+  $content = '';
+
+  $content .= '
+  <style>
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    line-height:0.7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    overflow: auto;
+    float: left;
+    margin-right: 20px;
+    display: inline-block;
+  vertical-align: top;
+}
+
+.company-details {
+    text-align: center;
+}
+</style>
+
+     <br/>
+      <div class="header">
+    <img src="images/logo12.png" class="logo">
+    <div class="company-details">
+        <h2>Sanjeevani Hospital</h2>
+        <p>Sanjeevani Group, Udupi, 560055 Opp. KS Mall</p>
+        <p>email: info@sanjeevani.com contact: +91 999999999</p>
+        <p>Adyar, Mangaluru 575555</p>
+        <h3>Bill</h3>
+    </div>
+</div>
+ 
+      
+      
+
+  ';
+ 
+  $content .= generate_bill();
+  $obj_pdf -> writeHTML($content);
+  ob_end_clean();
+  $obj_pdf -> Output("hmsbill.pdf",'I');
+
 }
 
 ?>
@@ -155,8 +256,10 @@ function get_specs(){
   <body style="padding-top:50px;">
   
    <div class="container-fluid" style="margin-top:50px;">
-    <h3 style = "margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo $username ?> 
-   </h3>
+    <h3 style = "margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo $username ?>
+    </h3>
+    <p style = "text-align:justify;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> PatientID: &nbsp<?php echo $pid ?> 
+    </p>
     <div class="row">
   <div class="col-md-4" style="max-width:25%; margin-top: 3%">
     <div class="list-group" id="list-tab" role="tablist">
@@ -243,7 +346,7 @@ function get_specs(){
                   <!-- <?php
 
                         $con=mysqli_connect("localhost","root","","hospitalms");
-                        $query=mysqli_query($con,"select doctorname,username,spec from doctb");
+                        $query=mysqli_query($con,"select doctor_id,doctorname,username,spec from doctb");
                         $docarray = array();
                           while($row =mysqli_fetch_assoc($query))
                           {
@@ -328,7 +431,7 @@ function get_specs(){
                   </div><br><br>
 
                   <div class="col-md-4">
-                    <input type="submit" name="app-submit" value="Create new entry" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" name="app-submit" value="Book Appointment" class="btn btn-primary" id="inputbtn">
                   </div>
                   <div class="col-md-8"></div>                  
                 </div>
@@ -368,7 +471,7 @@ function get_specs(){
                       <tr>
                         <td><?php echo $cnt;?></td>
                         <td><?php echo $row['doctor'];?></td>
-                        <td><?php echo '$'.$row['docFees'];?></td>
+                        <td><?php echo '₹'.$row['docFees'];?></td>
                         <td><?php echo $row['appdate'];?></td>
                         <td><?php echo $row['apptime'];?></td>
                         
@@ -453,7 +556,7 @@ function get_specs(){
                           
                               <a href="admin-panel.php?ID=<?php echo $row['ID']?>">
                               <input type ="hidden" name="ID" value="<?php echo $row['ID']?>"/>
-                              <input type = "submit" onclick="alert('Bill Paid Successfully');" name ="generate_bill" class = "btn btn-success" value="Pay Bill"/>
+                              <input type = "submit"  name ="generate_bill" class = "btn btn-success" value="Check Bill"/>
                               </a>
                               </td>
                               </form>
@@ -483,7 +586,7 @@ function get_specs(){
 </div>
    </div>
     
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
