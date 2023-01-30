@@ -3,9 +3,23 @@
 include('func.php');  
 include('newfunc.php');
 $con=mysqli_connect("localhost","root","","hospitalms");
+ 
+if (isset($_GET['pid'])) {
+  $pid = $_GET['pid'];
+} else {
+  $pid = '';
+}
+$email = $_SESSION['email'];
+$sql = "SELECT pid FROM patreg WHERE email = '$email'";
+$result1 = mysqli_query($con, $sql);
 
-
-  $pid = $_SESSION['pid'];
+// Check if the query was successful
+if (mysqli_num_rows($result1) > 0) {
+    // Get the "pid" value
+    $row = mysqli_fetch_assoc($result1);
+    $pid = $row['pid'];
+}
+  #$pid = $_SESSION['pid'];
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
   $fname = $_SESSION['fname'];
@@ -13,11 +27,13 @@ $con=mysqli_connect("localhost","root","","hospitalms");
   $lname = $_SESSION['lname'];
   $contact = $_SESSION['contact'];
 
+  
 
+  
 
 if(isset($_POST['app-submit']))
 {
-  $pid = $_SESSION['pid'];
+  #$pid = $_SESSION['pid'];
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
   $fname = $_SESSION['fname'];
@@ -256,10 +272,11 @@ if(isset($_GET["generate_bill"])){
   <body style="padding-top:50px;">
   
    <div class="container-fluid" style="margin-top:50px;">
-    <h3 style = "margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo $username ?>
+    <h3 style = "margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Welcome &nbsp<?php echo $fname ?>
     </h3>
-    <p style = "text-align:justify;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> PatientID: &nbsp<?php echo $pid ?> 
+    <p style = "margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> PID: &nbsp<?php echo $pid ?>
     </p>
+    
     <div class="row">
   <div class="col-md-4" style="max-width:25%; margin-top: 3%">
     <div class="list-group" id="list-tab" role="tablist">
